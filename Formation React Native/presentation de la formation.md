@@ -1,13 +1,12 @@
 # 📘 Formation React Native avec Expo
 
 ## 🎯 Objectif
-Ce module de formation de **30 heures** vous apprendra à développer une application mobile avec **React Native**, **Expo** en prenant comme projet fil rouge : **The Todo List App**.
-- [Visuel de la formation](https://gamma.app/docs/presentation-de-la-formation-4mshmlvtf037c4j)
+Ce module de formation vous apprendra à développer une application mobile avec **React Native**, **Expo** en prenant comme projet fil rouge : **The Todo List App**.
 ---
 
 ## 📅 Programme détaillé
 
-### 🏁 **Séance 1 : Introduction à React Native et mise en place du projet**
+### 🏁 **Leçon 1 : Introduction à React Native et mise en place du projet**
 - Présentation de React Native : avantages, différences avec React web.
 - Introduction à Expo : pourquoi l’utiliser ?
 - Présentation de ES6 et son intérêt.
@@ -20,7 +19,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🎨 **Séance 2 : Composants, State et Props**
+### 🎨 **Leçon 2 : Composants, State et Props**
 - Présentation des composants de base (View, Text, Button, TextInput…).
 - Différence entre composants fonctionnels et class-based.
 - Utilisation du `useState` pour gérer l’état local.
@@ -31,7 +30,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🎨 **Séance 3 : Styles et mise en forme des composants**
+### 🎨 **Leçon 3 : Styles et mise en forme des composants**
 - Différentes façons de styler les composants :
   - `StyleSheet.create`
   - Style inline
@@ -44,7 +43,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 📜 **Séance 4 : Listes et gestion des événements**
+### 📜 **Leçon 4 : Listes et gestion des événements**
 - Utilisation de `FlatList` et `ScrollView`.
 - Gestion des événements avec `onPress`.
 - Ajout de nouvelles tâches avec `TextInput`.
@@ -54,7 +53,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🚀 **Séance 5 : Navigation avec React Navigation**
+### 🚀 **Leçon 5 : Navigation avec React Navigation**
 - Installation et configuration de `react-navigation`.
 - Création d’une navigation entre l’écran principal et un écran de détails.
 - Passage de paramètres entre écrans.
@@ -63,7 +62,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🗄️ **Séance 6 : Gestion du contexte et stockage des données**
+### 🗄️ **Leçon 6 : Gestion du contexte et stockage des données**
 - Introduction à `Context API` pour la gestion globale de l’état.
 - Mise en place d’un `TodoContext`.
 - Introduction à AsyncStorage.
@@ -73,7 +72,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🌐 **Séance 7 : Requêtes API et gestion des données externes**
+### 🌐 **Leçon 7 : Requêtes API et gestion des données externes**
 - Introduction aux requêtes HTTP en React Native.
 - Utilisation de **Fetch API** et **Axios**.
 - Récupération d’une liste de tâches depuis une API.
@@ -83,7 +82,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### ⚡ **Séance 8 : Hooks avancés et gestion des effets de bord**
+### ⚡ **Leçon 8 : Hooks avancés et gestion des effets de bord**
 - Utilisation de `useEffect` pour gérer les effets de bord.
 - Gestion des dépendances dans `useEffect`.
 - Utilisation de `useReducer` comme alternative à `useState`.
@@ -93,7 +92,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🎬 **Séance 9 : Animation et interactions avancées**
+### 🎬 **Leçon 9 : Animation et interactions avancées**
 - Introduction à `react-native-reanimated` et `react-native-gesture-handler`.
 - Ajout d’une animation sur la suppression d’une tâche.
 - Ajout de gestes interactifs (swipe pour supprimer une tâche).
@@ -102,7 +101,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 📣 **Séance 10 : Notifications Push**
+### 📣 **Leçon 10 : Notifications Push**
 - Introduction aux notifications push dans les applications mobiles.
 - Intégration des notifications push via **Expo Notifications**.
 - Gestion des permissions et des paramètres de notification.
@@ -112,7 +111,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### 🌍 **Séance 11 : Internationalisation et Localisation**
+### 🌍 **Leçon 11 : Internationalisation et Localisation**
 - Présentation des concepts d’internationalisation (i18n) dans React Native.
 - Mise en place d’un système de traduction avec des bibliothèques telles que **react-i18next**.
 - Gestion des formats régionaux (dates, nombres, etc.).
@@ -122,7 +121,7 @@ Ce module de formation de **30 heures** vous apprendra à développer une applic
 
 ---
 
-### ✅ **Séance 12 : Test, déploiement et bonnes pratiques**
+### ✅ **Leçon 12 : Test, déploiement et bonnes pratiques**
 - Introduction aux tests avec Jest et React Native Testing Library.
 - Tester un composant et simuler une interaction utilisateur.
 - Préparation pour la publication : optimisation et bonnes pratiques.

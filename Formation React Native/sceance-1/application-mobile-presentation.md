@@ -92,9 +92,6 @@ Les applications **cross-platform**, comme celles développées avec **React Nat
 
 React Native, développé par Facebook, est l’un des frameworks les plus populaires pour le développement cross-platform. Il utilise **JavaScript et React** pour créer des interfaces mobiles tout en accédant aux composants natifs via un **bridge**. Contrairement aux applications hybrides, qui reposent sur une WebView, React Native **compile en composants natifs**, offrant ainsi une meilleure fluidité et performance.  
 
-Dans ce cours, nous verrons les **avantages et les inconvénients** des applications cross-platform développées avec **React Native**.  
-
-
 ## **Les Avantages du Développement Cross-Platform avec React Native**  
 
 ### **Code Unique pour iOS et Android**  

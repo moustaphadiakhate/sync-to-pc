@@ -1,4 +1,4 @@
-# Séance 1 : Introduction à React Native et mise en place du projet
+# COURS 1 : Introduction à React Native et mise en place du projet
 
 Bienvenue dans cette première séance de formation ! Dans ce module, nous allons explorer les bases de React Native, découvrir l’écosystème Expo, comprendre l’intérêt de ES6, et mettre en place votre premier projet mobile. Vous apprendrez également à afficher un simple texte sur l’écran. Ce cours détaillé inclut de nombreux exemples, explications étape par étape, et liens utiles pour approfondir vos connaissances.
 
