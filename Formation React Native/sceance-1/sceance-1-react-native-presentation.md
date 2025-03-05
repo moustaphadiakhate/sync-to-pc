@@ -301,7 +301,9 @@ Sélectionnez le template **blank (TypeScript)**.
 ### 5.2 Lancer le projet
 ```bash
 cd TheTodoListApp
-expo start
+
+npx expo start --tunnel
+
 ```
 Scannez le QR code affiché avec l’application Expo Go pour tester l’application.
 
