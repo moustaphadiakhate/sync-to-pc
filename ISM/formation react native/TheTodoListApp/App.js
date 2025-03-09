@@ -1,5 +1,4 @@
 // partie des imports
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, FlatList, ScrollView } from 'react-native';
 
@@ -11,10 +10,10 @@ export default function App() {
 
   // fonction pour ajouter une tache
   const AddTask = (tache) => {
-    if (tache === '') {
-      alert('Veuillez saisir une tache');
-      return;
-    }
+    // if (tache === '') {
+    //   alert('Veuillez saisir une tache');
+    //   return;
+    // }
     const newTache = {
       id: Math.random().toString(),
       text: tache,
@@ -43,18 +42,18 @@ export default function App() {
           value={tache}
           onChangeText={(text) => setTache(text)}
         />
-        <Button title="Ajouter"
+        <Button title="AJOUTER"
           onPress={() => AddTask(tache)}
         />
       </View>
 
 
-      <View style={styles.tacheListContainer}>
+      <ScrollView style={styles.tacheListContainer}>
 
-        {tacheList.map((tache, index) => ( // for
+        {tacheList.map((tache, index) => ( // 
           <View style={styles.todoItem}>
             <Text style={styles.toDoText}>{tache.text}</Text>
-            <Button title="Supprimer"
+            <Button title="SUPPRIMER"
               onPress={() => deleteTask(tache)} // id et un text {id : 1, text: 'tache 1'}
             />
 
@@ -62,7 +61,7 @@ export default function App() {
         )
         )}
 
-      </View>
+      </ScrollView>
 
 
     </View>
@@ -73,40 +72,52 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#275ab2',
+    backgroundColor: '#f5f7fa', // Fond clair et moderne
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
+    paddingTop: 100,
+    gap: 5
   },
   TextInputContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textInput: {
-    borderColor: '#e1ebf0',
-    borderWidth: 2,
-    borderRadius: 8,
-    width: '50%',
-    height: 40,
-  },
-  tacheListContainer: {
-    height: '50%',
-    width: '90%',
-  },
-  todoItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: '#4CAF50',
+    gap: 10,
     padding: 10,
-    margin: 5,
-    backgroundColor: '#b24027',
+    borderRadius: 10,
+    shadowOffset: { width: 0, height: 2 },
+    fontSize: 20
+  },
+  textInput: {
+    borderColor: '#d1d9e6',
+    borderWidth: 1,
     borderRadius: 8,
-    borderWidth: 2,
+    width: '70%',
+    padding: 10,
+    backgroundColor: '#ffffff',
+  },
+  tacheListContainer: {
+    width: '90%',
+    gap: 20,
+  },
+  todoItem: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    backgroundColor: '#4CAF50', // Vert élégant pour la tâche
+    borderRadius: 8,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+
   },
   toDoText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
+    flex: 1,
   },
 });
