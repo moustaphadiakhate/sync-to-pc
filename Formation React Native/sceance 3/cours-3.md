@@ -1,4 +1,4 @@
-# 📚 **Cours complet sur Flexbox en React Native**  
+# 📚 **Styles et mise en forme des composants**  
 
 ## 🎯 **Objectif du cours**  
 Ce cours te permettra de **maîtriser Flexbox** en React Native pour concevoir des interfaces **responsives et bien structurées**.  
