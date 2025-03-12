@@ -1,43 +1,39 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 
 export default function App() {
-
-  // logique du composant JS
   const [tache, setTache] = useState();
   const [listeTache, setListeTache] = useState([]);
 
   const ajouterTache = () => {
-
-
-    setListeTache([...listeTache, { id: Math.random().toString(), text: tache }]);
-    setTache('');
-
-  }
+    if (tache.length > 5) {
+      setListeTache([...listeTache, { id: Math.random().toString(), text: tache }]);
+      setTache('');
+    } else {
+      alert('Veuillez saisir une tâche valide');
+    }
+  };
 
   const supprimerTodo = (todoAsupprimer) => {
-    const nouvelleListe = listeTache.filter((tache) => tache.id !== todoAsupprimer.id)
-    setListeTache(nouvelleListe)
-  }
+    const nouvelleListe = listeTache.filter((tache) => tache.id !== todoAsupprimer.id);
+    setListeTache(nouvelleListe);
+  };
 
   return (
     <View style={styles.container}>
-
-      {/* Zone du champs de texte et du button ajouter */}
+      {/* Zone du champs de texte et du bouton ajouter */}
       <View style={styles.zoneAjoutToDo}>
         <TextInput
           value={tache}
           style={styles.textInput}
           placeholder="Ajouter une tâche"
+          placeholderTextColor="#ccc"
           onChangeText={(text) => setTache(text)}
         />
-        <Button
-          title="AJOUTER"
-          onPress={() => ajouterTache(tache)}
-        />
+        <Button title="AJOUTER" onPress={ajouterTache} />
       </View>
 
-      {/* Zone daffichage de la liste de todo 
+      {/* Liste des tâches avec scroll
 
       <ScrollView style={styles.zoneListeToDo}>
         {listeTache.map((tache, index) => (
@@ -53,30 +49,23 @@ export default function App() {
       </ScrollView>
       */}
 
+      {/* Liste des tâches VERSION FLATLIST*/}
       <FlatList
-
         data={listeTache}
-
-        renderItem={(item) => (
+        renderItem={({ item }) => (
           <View style={styles.todoItem}>
-            <Text style={styles.todoText}>{item.item.text}</Text>
-            <Button style={styles.todoButton}
-              title='SUPPRIMER'
-              onPress={(() => supprimerTodo(item.item))}
-            ></Button>
+            <Text style={styles.todoText}>{item.text}</Text>
+            <Button title="SUPPRIMER" onPress={() => supprimerTodo(item)} />
           </View>
         )}
-
         keyExtractor={(item) => item.id}
-
+        contentContainerStyle={styles.zoneListeToDo}
       />
-
-
     </View>
   );
 }
 
-// le style du composant
+// StyleSheet amélioré
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -91,35 +80,48 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '15%',
     padding: 10,
+    borderRadius: 10,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   textInput: {
     width: '60%',
     height: 50,
     borderWidth: 1,
     borderColor: '#ffffff',
-    fontSize: 20,
-    color: 'white'
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    fontSize: 18,
+    color: '#333',
+    backgroundColor: '#fff',
   },
   zoneListeToDo: {
-    height: 200,
-    alignItems: 'center',
-    backgroundColor: '#fffff',
+    paddingVertical: 10,
     gap: 5,
   },
   todoItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 10,
     borderWidth: 1,
-    marginTop: 10,
-    backgroundColor: '#9ee8ad'
+    borderColor: '#ccc',
+    backgroundColor: '#a6e8c2',
+    marginBottom: 10,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
   todoText: {
     flex: 1,
-    fontSize: 20,
-    color: 'white'
+    fontSize: 18,
+    color: '#333',
   },
   todoButton: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
