@@ -1,67 +1,75 @@
-// partie des imports
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 
 export default function App() {
+
   // logique du composant JS
-  const [tache, setTache] = useState(''); // initialisation de la variable d'etat
+  const [tache, setTache] = useState();
+  const [listeTache, setListeTache] = useState([]);
 
-  const [tacheList, setTacheList] = useState([]); // initialisation de la variable d'etat
+  const ajouterTache = () => {
 
-  // fonction pour ajouter une tache
-  const AddTask = (tache) => {
-    // if (tache === '') {
-    //   alert('Veuillez saisir une tache');
-    //   return;
-    // }
-    const newTache = {
-      id: Math.random().toString(),
-      text: tache,
-    }
-    setTacheList([...tacheList, newTache]); // ajout de la nouvelle tache dans la liste
-    setTache(''); // vide la zone de saisie
-  }
 
-  // fonction pour supprimer une tache
-  const deleteTask = (taskToDelete) => {
-    const newList = tacheList.filter((tache) => tache.id !== taskToDelete.id)   // filter la taache de la liste en fonction de l' ID
-    setTacheList(newList); // retourne la liste sans la tache sans la tache supprimée
+    setListeTache([...listeTache, { id: Math.random().toString(), text: tache }]);
+    setTache('');
 
   }
 
-
-  // rendue visuel du composant
+  const supprimerTodo = (todoAsupprimer) => {
+    const nouvelleListe = listeTache.filter((tache) => tache.id !== todoAsupprimer.id)
+    setListeTache(nouvelleListe)
+  }
 
   return (
     <View style={styles.container}>
 
-      <View style={styles.TextInputContainer}>
+      {/* Zone du champs de texte et du button ajouter */}
+      <View style={styles.zoneAjoutToDo}>
         <TextInput
-          placeholder='Ecrire une tache'
-          style={styles.textInput}
           value={tache}
+          style={styles.textInput}
+          placeholder="Ajouter une tâche"
           onChangeText={(text) => setTache(text)}
         />
-        <Button title="AJOUTER"
-          onPress={() => AddTask(tache)}
+        <Button
+          title="AJOUTER"
+          onPress={() => ajouterTache(tache)}
         />
       </View>
 
+      {/* Zone daffichage de la liste de todo 
 
-      <ScrollView style={styles.tacheListContainer}>
-
-        {tacheList.map((tache, index) => ( // 
+      <ScrollView style={styles.zoneListeToDo}>
+        {listeTache.map((tache, index) => (
           <View style={styles.todoItem}>
-            <Text style={styles.toDoText}>{tache.text}</Text>
-            <Button title="SUPPRIMER"
-              onPress={() => deleteTask(tache)} // id et un text {id : 1, text: 'tache 1'}
-            />
-
+          <Text style={styles.todoText} key={index}>{tache.text}</Text>
+          <Button style={styles.todoButton}
+          title='SUPPRIMER'
+          onPress={(() => supprimerTodo(tache))}
+          ></Button>
           </View>
-        )
-        )}
+        ))}
 
       </ScrollView>
+      */}
+
+      <FlatList
+
+        data={listeTache}
+
+        renderItem={(item) => (
+          <View style={styles.todoItem}>
+            <Text style={styles.todoText}>{item.item.text}</Text>
+            <Button style={styles.todoButton}
+              title='SUPPRIMER'
+              onPress={(() => supprimerTodo(item.item))}
+            ></Button>
+          </View>
+        )}
+
+        keyExtractor={(item) => item.id}
+
+      />
 
 
     </View>
@@ -72,52 +80,46 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f7fa', // Fond clair et moderne
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 100,
-    gap: 5
-  },
-  TextInputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#4CAF50',
+    padding: 30,
+    backgroundColor: '#ffffff',
     gap: 10,
+  },
+  zoneAjoutToDo: {
+    flexDirection: 'row',
+    backgroundColor: '#9ee8ad',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '15%',
     padding: 10,
-    borderRadius: 10,
-    shadowOffset: { width: 0, height: 2 },
-    fontSize: 20
   },
   textInput: {
-    borderColor: '#d1d9e6',
+    width: '60%',
+    height: 50,
     borderWidth: 1,
-    borderRadius: 8,
-    width: '70%',
-    padding: 10,
-    backgroundColor: '#ffffff',
+    borderColor: '#ffffff',
+    fontSize: 20,
+    color: 'white'
   },
-  tacheListContainer: {
-    width: '90%',
-    gap: 20,
+  zoneListeToDo: {
+    height: 200,
+    alignItems: 'center',
+    backgroundColor: '#fffff',
+    gap: 5,
   },
   todoItem: {
-    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 20,
-    backgroundColor: '#4CAF50', // Vert élégant pour la tâche
-    borderRadius: 8,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 3,
-
+    width: '100%',
+    borderWidth: 1,
+    marginTop: 10,
+    backgroundColor: '#9ee8ad'
   },
-  toDoText: {
-    color: 'white',
-    fontSize: 18,
+  todoText: {
     flex: 1,
+    fontSize: 20,
+    color: 'white'
   },
+  todoButton: {
+    color: 'white'
+  }
 });
