@@ -114,7 +114,7 @@ export default function ToDoListScreen({ navigation }) {
               </Text>
             </TouchableOpacity>
             <Button
-              title="×"
+              title="supprimer"
               onPress={() => supprimerTodo(item.id)}
               color="#e74c3c"
             />
@@ -257,8 +257,9 @@ const styles = StyleSheet.create({
   image: { 
     width: 100, 
     height: 100, 
-    borderRadius: 50, 
-    marginBottom: 10 
+    borderRadius: 20, 
+    marginBottom: 10,
+    borderwidth: 5
     },
   welcome: { 
     fontSize: 22, 
