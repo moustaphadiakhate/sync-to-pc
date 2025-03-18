@@ -1,147 +1,369 @@
-Parfait Moustapha ! Voici le cours **"Leçon 5 : Navigation avec React Navigation"**, bien structuré pour ta formation.
-
----
-
 ## 🚀 **Leçon 5 : Navigation avec React Navigation**
 
-### ✅ Objectifs :
-- Comprendre le fonctionnement de `react-navigation`.
-- Naviguer entre plusieurs écrans.
-- Passer des paramètres d’un écran à un autre.
+### **Objectif**
+Dans ce TP, nous allons apprendre à utiliser la navigation avec `react-navigation` dans une application React Native. Nous allons :
+- Modulariser notre application en plusieurs fichiers.
+- Ajouter un champ `descriptionTache` pour les détails des tâches.
+- Créer un écran de détails pour afficher plus d'informations sur une tâche.
+- Implémenter une navigation entre les écrans.
+- Ajouter une navigation en onglets (`Bottom Tab Navigation`) avec une page de profil et des icônes.
 
 ---
 
-### 🔸 1. Installation de `react-navigation` (Expo)
-
-Dans ton terminal ou Snack, installe les dépendances :
-
-```bash
-npx expo install @react-navigation/native
-npx expo install react-native-screens react-native-safe-area-context
-npx expo install @react-navigation/native-stack
+### **1️⃣ Pré-requis**
+Assurez-vous d'avoir installé `react-navigation` et ses dépendances :
+```sh
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-vector-icons
+npm install @react-navigation/native-stack
+npm install @react-navigation/bottom-tabs
+npm install @expo/vector-icons
 ```
 
 ---
 
-### 🔸 2. Configuration de la navigation
-
-Crée un fichier `App.js` :
-
-```tsx
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen';
-import DetailScreen from './screens/DetailScreen';
-
-const Stack = createNativeStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+### **2️⃣ Structure du projet**
+```
+/src
+  ├── /screens
+  │   ├── ToDoListScreen.js     # Liste des tâches avec saisie et suppression
+  │   ├── DetailScreen.js       # Affichage des détails d'une tâche
+  │   └── ProfileScreen.js      # Page de profil avec statistiques
+  └── App.js                    # Configuration de la navigation
 ```
 
 ---
 
-### 🔸 3. Création des écrans
+### **3️⃣ Création des fichiers et code**
 
-#### `screens/HomeScreen.tsx`
+#### **📌 `ToDoListScreen.js`**
 
-```tsx
+Cet écran permet d'ajouter des tâches avec une description, de les afficher sous forme de liste et de naviguer vers leur détail.
+
+Fonctionnalités principales :
+- Ajout et suppression des tâches avec validation.
+- Affichage sous forme de liste avec un bouton pour voir les détails.
+- Navigation vers `DetailScreen` en cliquant sur une tâche.
+
+```jsx
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
-const HomeScreen = ({ navigation }) => {
-  const [tasks] = useState([
-    { id: '1', title: 'Faire les courses', description: 'Acheter lait, pain, oeufs' },
-    { id: '2', title: 'Coder une app', description: 'Créer un écran de login' },
-  ]);
+export default function ToDoListScreen({ navigation }) {
+  const [tache, setTache] = useState('');
+  const [descriptionTache, setDescriptionTache] = useState('');
+  const [listeTache, setListeTache] = useState([]);
+
+  // Validation des saisies
+  const ajouterTache = () => {
+    if (tache.length > 5 && descriptionTache.length > 10) {
+      setListeTache([...listeTache, {
+        id: Math.random().toString(),
+        text: tache,
+        description: descriptionTache
+      }]);
+      setTache('');
+      setDescriptionTache('');
+    } else {
+      alert('La tâche doit avoir 6+ caractères et la description 11+ caractères');
+    }
+  };
+
+  const supprimerTodo = (id) => {
+    setListeTache(listeTache.filter(item => item.id !== id));
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Liste des tâches</Text>
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.taskItem}
+      {/* Zone de saisie */}
+      <View style={styles.zoneAjoutToDo}>
+        <TextInput
+          value={tache}
+          style={styles.textInput}
+          placeholder="Nouvelle tâche"
+          placeholderTextColor="#999"
+          onChangeText={setTache}
+        />
+        <TextInput
+          value={descriptionTache}
+          style={styles.textInput}
+          placeholder="Description"
+          placeholderTextColor="#999"
+          onChangeText={setDescriptionTache}
+          multiline
+        />
+        <Button 
+          title="AJOUTER" 
+          onPress={ajouterTache} 
+          color="#2ecc71"
+        />
+      </View>
+
+      {/* Liste des tâches */}
+      <FlatList
+        data={listeTache}
+        renderItem={({ item }) => (
+          <View style={styles.todoItem}>
+            <TouchableOpacity 
+              style={styles.todoContent}
               onPress={() => navigation.navigate('Details', { task: item })}
             >
-              <Text style={styles.taskTitle}>{item.title}</Text>
+              <Text style={styles.todoText}>{item.text}</Text>
+              <Text style={styles.todoDescription} numberOfLines={1}>
+                {item.description}
+              </Text>
             </TouchableOpacity>
-          )}
-        />
+            <Button
+              title="×"
+              onPress={() => supprimerTodo(item.id)}
+              color="#e74c3c"
+            />
+          </View>
+        )}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.zoneListeToDo}
+      />
     </View>
   );
-};
+}
 
+// Styles cohérents avec le TP précédent
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
-  taskItem: {
-    padding: 16,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 10,
-    marginBottom: 10,
+  container: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: '#ffffff',
+    gap: 15,
   },
-  taskTitle: { fontSize: 18 },
+  zoneAjoutToDo: {
+    backgroundColor: '#9ee8ad',
+    padding: 15,
+    borderRadius: 10,
+    elevation: 3,
+    gap: 10,
+  },
+  textInput: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#dcdcdc',
+  },
+  todoItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#a6e8c2',
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 2,
+  },
+  todoContent: {
+    flex: 1,
+    marginRight: 10,
+  },
+  todoText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#2c3e50',
+  },
+  todoDescription: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
+  },
 });
-
-export default HomeScreen;
 ```
-
 ---
 
-#### `screens/DetailScreen.tsx`
+#### **📌 `DetailScreen.js`**
 
-```tsx
+Cet écran affiche les détails d'une tâche sélectionnée depuis `ToDoListScreen`.
+
+Fonctionnalités principales :
+- Récupération des paramètres passés en navigation.
+- Affichage du nom de la tâche et de sa description.
+
+```jsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const DetailScreen = ({ route }) => {
+export default function DetailScreen({ route }) {
   const { task } = route.params;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Détail de la tâche</Text>
-      <Text style={styles.label}>Titre :</Text>
-      <Text style={styles.content}>{task.title}</Text>
-      <Text style={styles.label}>Description :</Text>
-      <Text style={styles.content}>{task.description}</Text>
+      <Text style={styles.title}>{task.text}</Text>
+      <Text style={styles.description}>{task.description}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
-  label: { fontSize: 18, fontWeight: '600' },
-  content: { fontSize: 16, marginBottom: 15 },
+  container: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: '#ecf0f1',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    marginBottom: 20,
+  },
+  description: {
+    fontSize: 18,
+    color: '#34495e',
+    lineHeight: 24,
+  },
 });
-
-export default DetailScreen;
 ```
 
 ---
 
-### 📦 Résumé :
-- Tu as mis en place une navigation `Stack`.
-- Tu sais naviguer d’un écran à l’autre.
-- Tu peux passer des objets ou des paramètres via `navigate`.
+#### **📌 `ProfileScreen.js`**
+
+Cet écran affiche une photo de profil et des informations sur le nombre de tâches ajoutées.
+
+Fonctionnalités principales :
+- Affichage d'une image de profil.
+- Indication du nombre de tâches créées.
+
+```jsx
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+
+export default function ProfileScreen({ route }) {
+  const listeTaches = [];
+
+  return (
+    <View style={styles.container}>
+      <Image source={{ uri: 'https://picsum.photos/200/300' }} style={styles.image} />
+      <Text style={styles.welcome}>Bienvenue!</Text>
+      <Text style={styles.todoCount}>Vous avez {listeTaches.length} tâches créées.</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: '#f8f9fa' 
+  },
+  image: { 
+    width: 100, 
+    height: 100, 
+    borderRadius: 50, 
+    marginBottom: 10 
+    },
+  welcome: { 
+    fontSize: 22, 
+    fontWeight: 'bold', 
+    marginBottom: 5 
+    },
+  todoCount: { 
+    fontSize: 18, 
+    color: '#555'
+  }
+});
+```
 
 ---
 
-## 📝 **Exercice : Créer un écran de détails pour une tâche**
-1. À partir de la `HomeScreen`, clique sur une tâche.
-2. Navigue vers `DetailScreen` avec les données de la tâche.
-3. Affiche le titre et la description sur la page de détail.
+#### **📌 `App.js`**
+
+Ce fichier met en place la navigation entre les écrans via :
+- Un `Stack Navigator` pour gérer la navigation entre `ToDoListScreen` et `DetailScreen`.
+- Un `Bottom Tab Navigator` pour basculer entre la liste des tâches et le profil.
+- Des icônes pour chaque onglet de navigation.
+
+```jsx
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import ToDoListScreen from './screens/ToDoListScreen';
+import DetailScreen from './screens/DetailScreen';
+import ProfileScreen from './screens/ProfileScreen';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function TodoStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Accueil" 
+        component={ToDoListScreen} 
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="Details" 
+        component={DetailScreen} 
+        options={{ title: 'Détails de la tâche' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+            if (route.name === "Taches") {
+              iconName = "list";
+            } else if (route.name === "Profile") {
+              iconName = "person";
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#2ecc71',
+          tabBarInactiveTintColor: '#95a5a6',
+        })}
+      >
+        <Tab.Screen name="Taches" component={TodoStack} options={{ headerShown: false }} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+```
+---
+
+### **4️⃣ Navigation dans l'application**
+
+#### **Navigation en pile (`Stack Navigator`)**
+- Utilisée pour passer de `ToDoListScreen` à `DetailScreen`.
+- Permet de revenir en arrière automatiquement.
+
+#### **Navigation en onglets (`Bottom Tab Navigation`)**
+- Ajoute une barre de navigation en bas de l'écran.
+- Deux onglets : `Taches` (liste des tâches) et `Profile`.
+- Utilisation d'icônes personnalisées via `@expo/vector-icons`.
+
+---
+
+### **5️⃣ Exemple de rendu final**
+
+Voici un aperçu de l'application avec la navigation implémentée :
+- **Écran principal** : Liste des tâches avec ajout et suppression.
+- **Écran de détails** : Affiche les informations détaillées d'une tâche.
+- **Écran de profil** : Affiche une image de profil et le nombre de tâches créées.
+
+---
+
+### **6️⃣ Résumé**
+
+Dans cette leçon, nous avons appris à :
+- Configurer `react-navigation` dans une application React Native.
+- Implémenter une navigation en pile (`Stack Navigator`) et en onglets (`Bottom Tab Navigator`).
+- Modulariser le code en plusieurs fichiers pour une meilleure organisation.
 
 ---
