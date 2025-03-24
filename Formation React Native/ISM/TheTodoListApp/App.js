@@ -1,127 +1,53 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import ToDoListScreen from './src/screens/ToDoListScreen';
+import DetailScreen from './src/screens/DetailScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 
-export default function App() {
-  const [tache, setTache] = useState();
-  const [listeTache, setListeTache] = useState([]);
+const Stack = createNativeStackNavigator();
 
-  const ajouterTache = () => {
-    if (tache.length > 5) {
-      setListeTache([...listeTache, { id: Math.random().toString(), text: tache }]);
-      setTache('');
-    } else {
-      alert('Veuillez saisir une tâche valide');
-    }
-  };
+const Tab = createBottomTabNavigator();
 
-  const supprimerTodo = (todoAsupprimer) => {
-    const nouvelleListe = listeTache.filter((tache) => tache.id !== todoAsupprimer.id);
-    setListeTache(nouvelleListe);
-  };
-
+function TodoStack() {
   return (
-    <View style={styles.container}>
-      {/* Zone du champs de texte et du bouton ajouter */}
-      <View style={styles.zoneAjoutToDo}>
-        <TextInput
-          value={tache}
-          style={styles.textInput}
-          placeholder="Ajouter une tâche"
-          placeholderTextColor="#ccc"
-          onChangeText={(text) => setTache(text)}
-        />
-        <Button title="AJOUTER" onPress={ajouterTache} />
-      </View>
-
-      {/* Liste des tâches avec scroll
-
-      <ScrollView style={styles.zoneListeToDo}>
-        {listeTache.map((tache, index) => (
-          <View style={styles.todoItem}>
-          <Text style={styles.todoText} key={index}>{tache.text}</Text>
-          <Button style={styles.todoButton}
-          title='SUPPRIMER'
-          onPress={(() => supprimerTodo(tache))}
-          ></Button>
-          </View>
-        ))}
-
-      </ScrollView>
-      */}
-
-      {/* Liste des tâches VERSION FLATLIST*/}
-      <FlatList
-        data={listeTache}
-        renderItem={({ item }) => (
-          <View style={styles.todoItem}>
-            <Text style={styles.todoText}>{item.text}</Text>
-            <Button title="SUPPRIMER" onPress={() => supprimerTodo(item)} />
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.zoneListeToDo}
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Accueil"
+        component={ToDoListScreen}
+        options={{ title: "Accueil" }}
       />
-    </View>
+      <Stack.Screen
+        name="Details"
+        component={DetailScreen}
+        options={{ title: 'Détails de la tâche' }}
+      />
+    </Stack.Navigator>
   );
 }
 
-// StyleSheet amélioré
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-    backgroundColor: '#ffffff',
-    gap: 10,
-  },
-  zoneAjoutToDo: {
-    flexDirection: 'row',
-    backgroundColor: '#9ee8ad',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '15%',
-    padding: 10,
-    borderRadius: 10,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  textInput: {
-    width: '60%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#ffffff',
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    fontSize: 18,
-    color: '#333',
-    backgroundColor: '#fff',
-  },
-  zoneListeToDo: {
-    paddingVertical: 10,
-    gap: 5,
-  },
-  todoItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 12,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#a6e8c2',
-    marginBottom: 10,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-  },
-  todoText: {
-    flex: 1,
-    fontSize: 18,
-    color: '#333',
-  },
-  todoButton: {
-    color: 'white',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+            if (route.name === "Taches") {
+              iconName = "list";
+            } else if (route.name === "Profile") {
+              iconName = "person";
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#2ecc71',
+          tabBarInactiveTintColor: '#95a5a6',
+        })}
+      >
+        <Tab.Screen name="Taches" component={TodoStack} options={{ headerShown: false }} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
