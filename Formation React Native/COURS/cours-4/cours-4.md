@@ -1,6 +1,3 @@
-Super Moustapha ! Voici le cours **"Leçon 4 : Listes et gestion des événements"** que tu pourras intégrer dans ta formation React Native. Je te structure le tout avec des explications claires, un exemple de code, puis un exercice pratique.
-
----
 
 ## 📜 **Leçon 4 : Listes et gestion des événements**
 
@@ -136,7 +133,3 @@ const styles = StyleSheet.create({
 - Bonus : afficher une alerte quand on appuie sur une tâche.
 
 ---
-
-Si tu veux, je peux te fournir une version Snack prête à tester ou l'ajouter dans ta structure de cours au format Markdown ou PDF.
-
-Souhaites-tu aussi la **Leçon 5 : Suppression et édition d’éléments de liste** pour la suite ?

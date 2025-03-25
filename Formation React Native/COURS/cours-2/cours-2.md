@@ -1,7 +1,7 @@
 
-# Séance 2 : Composants, State et Props
+# Cours 2 : Composants, State et Props
 
-Bienvenue dans cette deuxième séance de formation ! Dans cette session, nous allons explorer en profondeur les concepts essentiels des **composants**, du **state** (état) et des **props** dans React Native. Vous apprendrez à :
+Bienvenue dans ce deuxième cours de formation ! Dans cette session, nous allons explorer en profondeur les concepts essentiels des **composants**, du **state** (état) et des **props** dans React Native. Vous apprendrez à :
 
 - Créer et utiliser des composants réutilisables (fonctionnels et de classe)
 - Gérer l'état local avec le hook `useState`
