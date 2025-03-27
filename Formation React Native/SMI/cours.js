@@ -18,7 +18,6 @@ let EtudiantSMI = {
 
 console.log(`Bienvenue ${EtudiantSMI.prenom} votre code etudiant est ${EtudiantSMI.codeEtudiant}`);
 
-
 // les tabeaux
 
 let fruits = ["Pomme", "Banane", "Orange"];
@@ -49,3 +48,25 @@ console.log(listDesNombresPairs);
 let listDesNombresDoubles = listDesNombres.map((nombre) => nombre * 2);
 
 console.log(listDesNombresDoubles);
+
+
+const Pays = {
+  president: "Diomaye",
+  capitale: "Dakar"
+}
+
+const mot = `Bienvenue au Senegal, la capitale est ${Pays.capitale} et son president est ${Pays.president}`
+console.log(mot)
+console.log("Bienvenue au Senegal, la capitale est " + Pays.capitale + "et son president est " + Pays.president)
+
+
+
+const user = {
+  name: "Charlie",
+  age: 35
+};
+const { name, age } = user;
+
+console.log(user.name)
+
+console.log(age)
