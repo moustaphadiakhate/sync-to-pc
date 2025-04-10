@@ -3,4 +3,4 @@ Séance 1:
 	Installation des logiciels Nodejs - Vs Code - Expo Go
 	LECTURE: Présentation de React Native
 	Mise a niveau sur Javascript
-	
+	`` ''  " "
