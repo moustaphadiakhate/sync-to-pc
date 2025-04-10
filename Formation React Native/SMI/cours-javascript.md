@@ -329,6 +329,33 @@ fruits.splice(1, 1); // ["pomme", "orange"]
 fruits.splice(1, 0, "kiwi"); // ["pomme", "kiwi", "orange"]
 ```
 
+Bien sûr ! Voici la suite avec les méthodes `map()` et `filter()`, très pratiques pour **transformer** et **filtrer** des tableaux en JavaScript :
+
+---
+
+### **d) `map()` → Transformer un tableau**
+
+> `map()` crée un **nouveau tableau** en appliquant une fonction à **chaque élément** du tableau d’origine.
+
+```javascript
+let nombres = [1, 2, 3, 4];
+
+// Multiplier chaque élément par 2
+let doublés = nombres.map((n) => n * 2); // [2, 4, 6, 8]
+```
+
+---
+
+### **e) `filter()` → Filtrer des éléments**
+
+> `filter()` crée un **nouveau tableau** avec les éléments qui passent un **test** (fonction de filtrage).
+
+```javascript
+let nombres = [5, 12, 8, 20, 3];
+
+// Garder uniquement les nombres supérieurs à 10
+let grands = nombres.filter((n) => n > 10); // [12, 20]
+```
 ---
 
 ## **7. Parcourir un Tableau**
@@ -777,41 +804,6 @@ let estEtudiant = true;
 
 if (age >= 18 && estEtudiant) {
   console.log("Étudiant majeur");
-}
-```
-
----
-
-## **7. Le Switch-Case**
-Alternative aux multiples `else if` pour comparer une variable à plusieurs valeurs.
-
-### **Syntaxe :**
-```javascript
-switch (variable) {
-  case valeur1:
-    // Code
-    break;
-  case valeur2:
-    // Code
-    break;
-  default:
-    // Code par défaut
-}
-```
-
-### **Exemple :**
-```javascript
-let jour = "Lundi";
-
-switch (jour) {
-  case "Lundi":
-    console.log("Début de semaine !");
-    break;
-  case "Vendredi":
-    console.log("Bientôt le week-end !");
-    break;
-  default:
-    console.log("Jour standard");
 }
 ```
 
