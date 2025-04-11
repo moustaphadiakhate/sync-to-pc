@@ -1,6 +1,3 @@
-Bien joué Moustapha, voici **20 exercices simples en JavaScript pour débutants** regroupés par thème. Aucun code de solution, juste les consignes pour t'entraîner à fond. 💪
-
----
 
 ### 🔤 **1–3 : Strings & Template Strings**
 
