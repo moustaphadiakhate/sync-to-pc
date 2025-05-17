@@ -294,7 +294,7 @@ expo --version
 
 ### 5.1 Initialiser le projet
 ```bash
-expo init TheTodoListApp
+npx create-expo-app TheTodoListApp --template blank
 ```
 Sélectionnez le template **blank (TypeScript)**.
 
@@ -353,12 +353,13 @@ Créer un projet **The Todo List App** en utilisant Expo, et afficher un message
    ```
 2. **Création du projet**
    ```bash
-   expo init TheTodoListApp
+   npx create-expo-app TheTodoListApp --template blank
+
    ```
 3. **Démarrer le projet**
    ```bash
    cd TheTodoListApp
-   expo start
+   npx expo start --lan // ou --tunnel
    ```
 4. **Modification de `App.jsx`** avec le code de la section précédente.
 
