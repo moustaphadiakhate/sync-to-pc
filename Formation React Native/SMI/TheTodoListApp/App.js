@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import icon from "./assets/icon.png";
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <Image style={styles.image} source={icon} />
       <Text style={styles.text}>Bienvenue !!</Text>
       <TextInput style={styles.input} placeholder='Votre nom' />
       <Button style={styles.button} title='GO' />
@@ -13,9 +15,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    gap: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFA500',
+    backgroundColor: '#9bf5fa',
   },
   text: {
     fontSize: 20,
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#fff',
     padding: 10,
     width: '80%',
     borderRadius: 5,
@@ -32,4 +35,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     color: '#fff',
   },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  }
 });
