@@ -1,13 +1,29 @@
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
-import icon from "./assets/icon.png";
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, { useState } from 'react';
 
 export default function App() {
+  const [tache, setTache] = useState('');
+  const [listeTaches, setListeTaches] = useState([]);
+
+  const ajouterTache = () => {
+    setListeTaches([...listeTaches, tache]);
+    setTache('');
+  }
+
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={icon} />
-      <Text style={styles.text}>Bienvenue !!</Text>
-      <TextInput style={styles.input} placeholder='Votre nom' />
-      <Button style={styles.button} title='GO' />
+      <Text style={styles.title}>THE TODO LIST APP</Text>
+      <View style={styles.zoneInput}>
+        <TextInput
+          style={styles.input} placeholder="Ajouter une tâche"
+          onChangeText={(text) => setTache(text)}
+          value={tache}
+        />
+        <Button style={styles.button} title="Ajouter" onPress={ajouterTache} />
+      </View>
+      <View style={styles.zoneListe}>
+        <Text style={styles.listeTitle}>{listeTaches}</Text>
+      </View>
     </View>
   );
 }
@@ -15,29 +31,44 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 40,
     gap: 20,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9bf5fa',
+    backgroundColor: '#FFF',
   },
-  text: {
-    fontSize: 20,
-    color: '#fff',
+  zoneInput: {
+    width: '90%',
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '25%',
+    backgroundColor: '#11baf7',
+    elevation: 5,
+    borderRadius: 10,
+  },
+  title: {
+    fontSize: 35,
+    color: '#11baf7',
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#fff',
+    borderRadius: 4,
     padding: 10,
-    width: '80%',
-    borderRadius: 5,
+    backgroundColor: '#FFF',
+    width: '60%',
   },
   button: {
-    backgroundColor: '#000',
-    color: '#fff',
+    backgroundColor: '#007BFF',
   },
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  }
+  zoneListe: {
+    width: '90%',
+    height: '50%',
+    backgroundColor: '#11baf7',
+    borderRadius: 10,
+    padding: 10,
+  },
+  listeTitle: {
+    fontSize: 20,
+    color: '#FFF',
+  },
 });
