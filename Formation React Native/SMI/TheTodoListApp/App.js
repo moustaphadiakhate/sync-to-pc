@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
   const [tache, setTache] = useState('');
@@ -8,6 +8,11 @@ export default function App() {
   const ajouterTache = () => {
     setListeTaches([...listeTaches, tache]);
     setTache('');
+  }
+
+  supprimerTache = (index) => {
+    const nouvellesTaches = listeTaches.filter((tache, i) => i !== index);
+    setListeTaches(nouvellesTaches);
   }
 
   return (
@@ -21,9 +26,14 @@ export default function App() {
         />
         <Button style={styles.button} title="Ajouter" onPress={ajouterTache} />
       </View>
-      <View style={styles.zoneListe}>
-        <Text style={styles.listeTitle}>{listeTaches}</Text>
-      </View>
+      <ScrollView style={styles.zoneListe}>
+        {listeTaches.map((tache, index) => (
+          <View key={index} style={styles.zoneTitle}>
+            <Text style={styles.listeTitle}>{tache}</Text>
+            <Button title="Supprimer" onPress={() => supprimerTache(index)} />
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -62,13 +72,19 @@ const styles = StyleSheet.create({
   },
   zoneListe: {
     width: '90%',
-    height: '50%',
-    backgroundColor: '#11baf7',
+    backgroundColor: '#FFF',
     borderRadius: 10,
-    padding: 10,
   },
   listeTitle: {
     fontSize: 20,
     color: '#FFF',
   },
+  zoneTitle: {
+    padding: 5,
+    backgroundColor: '#11baf7',
+    marginBottom: 5,
+    elevation: 5,
+    flexDirection: "row",
+    justifyContent: 'space-between',
+  }
 });
