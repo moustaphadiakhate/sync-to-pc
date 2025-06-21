@@ -24,12 +24,12 @@ npm install @expo/vector-icons
 
 ### **2️⃣ Structure du projet**
 ```
-/src
-  ├── /screens
-  │   ├── ToDoListScreen.js     # Liste des tâches avec saisie et suppression
-  │   ├── DetailScreen.js       # Affichage des détails d'une tâche
-  │   └── ProfileScreen.js      # Page de profil avec statistiques
-  └── App.js                    # Configuration de la navigation
+|──/src
+|  |──/screens
+|     ├── ToDoListScreen.js     # Liste des tâches avec saisie et suppression
+│     ├── DetailScreen.js       # Affichage des détails d'une tâche
+│     └── ProfileScreen.js      # Page de profil avec statistiques
+└── App.js                    # Configuration de la navigation
 ```
 
 ---
