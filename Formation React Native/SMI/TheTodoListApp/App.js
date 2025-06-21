@@ -1,20 +1,25 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
-import { useState } from 'react';
-import TodoList from "./src/screens/TodoList";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ToDoListScreen from './screens/ToDoListScreen';
+import DetailScreen from './screens/DetailScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-
   return (
-    <TodoList></TodoList>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="TodoList"
+          component={ToDoListScreen}
+          options={{ title: 'Todo Page' }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+          options={{ title: 'Détail de la tâche' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 40,
-    gap: 20,
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-  }
-});

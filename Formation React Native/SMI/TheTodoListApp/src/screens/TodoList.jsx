@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
-export default function TodoListScreen() {
+export default function TodoListScreen({ navigation }) {
   const [tacheTitre, setTacheTitre] = useState('');
   const [tacheDescription, setTacheDescription] = useState('');
 
@@ -36,13 +36,17 @@ export default function TodoListScreen() {
       </View>
       <ScrollView style={styles.zoneListe}>
         {listeTaches.map((tache, index) => (
-          <View key={index} style={styles.zoneTitle}>
-            <Text style={styles.listeTitle}>{tache}</Text>
+          <TouchableOpacity key={index} style={styles.zoneTitle}
+            onPress={() => navigation.navigate('Detail', { tache: tache })}>
+
+            <Text style={styles.listeTitle}>{tache.tire}</Text>
             <Button title="Supprimer" onPress={() => supprimerTache(index)} />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
+
+          </TouchableOpacity>
+        ))
+        }
+      </ScrollView >
+    </View >
   );
 }
 
@@ -56,11 +60,10 @@ const styles = StyleSheet.create({
   },
   zoneInput: {
     width: '90%',
-    flexDirection: 'row',
+    gap: 5,
     padding: 15,
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '25%',
     backgroundColor: '#11baf7',
     elevation: 5,
     borderRadius: 10,
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 10,
     backgroundColor: '#FFF',
-    width: '60%',
+    width: '80%',
   },
   button: {
     backgroundColor: '#007BFF',
