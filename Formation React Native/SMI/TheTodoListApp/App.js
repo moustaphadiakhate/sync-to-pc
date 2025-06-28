@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import ToDoListScreen from './src/screens/TodoList';
 import DetailScreen from './src/screens/Detail';
 import ProfileScreen from "./src/screens/Profile";
