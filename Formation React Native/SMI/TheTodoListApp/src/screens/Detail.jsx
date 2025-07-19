@@ -6,8 +6,10 @@ export default function DetailScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{tache.titre}</Text>
-      <Text style={styles.description}>{tache.description}</Text>
+      <View style={styles.card}>
+        <Text style={styles.title}>{tache.titre}</Text>
+        <Text style={styles.description}>{tache.description}</Text>
+      </View>
     </View>
   );
 }
@@ -15,18 +17,34 @@ export default function DetailScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#f0f4f8',
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
+    width: '90%',
+    maxWidth: 600,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: 20,
+    color: '#333',
+    marginBottom: 15,
+    textAlign: 'center',
   },
   description: {
     fontSize: 18,
-    color: '#34495e',
-    lineHeight: 24,
+    color: '#555',
+    lineHeight: 26,
+    textAlign: 'justify',
   },
 });

@@ -43,7 +43,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Profile" component={ProfileScreen} />
-        <Tab.Screen name="Todo" component={TodoNavigation} />
+        <Tab.Screen name="Todo" component={TodoNavigation} options={{ headerShown: false }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
