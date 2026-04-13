@@ -13,7 +13,7 @@
 - `ScrollView` est utilisé pour des contenus **fixes et courts** (toute la liste est rendue d’un coup).
 - `FlatList` est plus performant pour **des listes longues ou dynamiques**, car il rend les éléments au fur et à mesure.
 
-```tsx
+```jsx
 import { ScrollView, Text } from 'react-native';
 
 <ScrollView>
@@ -22,7 +22,7 @@ import { ScrollView, Text } from 'react-native';
 </ScrollView>
 ```
 
-```tsx
+```jsx
 import { FlatList, Text } from 'react-native';
 
 <FlatList
@@ -36,7 +36,7 @@ import { FlatList, Text } from 'react-native';
 
 ### 🔸 2. Gérer les événements avec `onPress`
 
-```tsx
+```jsx
 import { TouchableOpacity, Text } from 'react-native';
 
 <TouchableOpacity onPress={() => alert("Tâche cliquée !")}>
@@ -48,7 +48,7 @@ import { TouchableOpacity, Text } from 'react-native';
 
 ### 🔸 3. Ajouter une tâche avec `TextInput` et `useState`
 
-```tsx
+```jsx
 import React, { useState } from 'react';
 import { View, TextInput, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native';
 

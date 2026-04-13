@@ -22,7 +22,7 @@ Le Hook `useEffect` est utilisé pour exécuter du code après le rendu du compo
 ### ⚡ **Exemple : Récupérer des données depuis une API**  
 Imaginons une application qui affiche une liste d’utilisateurs depuis une API.  
 
-```tsx
+```jsx
 import React, { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList } from "react-native";
 
@@ -73,7 +73,7 @@ Le deuxième paramètre de `useEffect` est un tableau de dépendances. Il permet
 
 ### ⚡ **Exemple : Exécuter `useEffect` lorsque l'utilisateur change**  
 
-```tsx
+```jsx
 import React, { useEffect, useState } from "react";
 import { View, Text, Button } from "react-native";
 
@@ -113,7 +113,7 @@ Le Hook `useContext` permet de partager des données entre plusieurs composants 
 
 **1️⃣ Créons un `UserContext` global :**  
 
-```tsx
+```jsx
 import React, { createContext, useState } from "react";
 
 export const UserContext = createContext();
@@ -131,7 +131,7 @@ export const UserProvider = ({ children }) => {
 
 **2️⃣ Utilisation du contexte dans un composant enfant :**  
 
-```tsx
+```jsx
 import React, { useContext } from "react";
 import { View, Text, Button } from "react-native";
 import { UserContext } from "./UserContext";
@@ -153,7 +153,7 @@ export default UserProfile;
 
 **3️⃣ Enveloppons l’application avec le Provider :**  
 
-```tsx
+```jsx
 import React from "react";
 import { UserProvider } from "./UserContext";
 import UserProfile from "./UserProfile";
@@ -182,7 +182,7 @@ Le Hook `useMemo` optimise les calculs coûteux en **mémorisant** le résultat 
 
 ### ⚡ **Exemple : Calculer une valeur optimisée**  
 
-```tsx
+```jsx
 import React, { useState, useMemo } from "react";
 import { View, Text, Button } from "react-native";
 

@@ -38,7 +38,7 @@ Cette propriété définit **l’orientation des éléments** dans un conteneur.
 | `column-reverse` | Alignement vertical **inversé**. |
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexDirection: "row" }}>
   <View style={{ backgroundColor: "red", width: 50, height: 50 }} />
   <View style={{ backgroundColor: "blue", width: 50, height: 50 }} />
@@ -61,7 +61,7 @@ Cette propriété contrôle **comment les éléments sont distribués** sur l’
 | `space-evenly` | Répartit **l’espace de manière égale**. |
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
   <View style={{ backgroundColor: "red", width: 50, height: 50 }} />
   <View style={{ backgroundColor: "blue", width: 50, height: 50 }} />
@@ -83,7 +83,7 @@ Cette propriété contrôle l’alignement **vertical** des éléments quand `fl
 | `stretch` | Étire les éléments pour **remplir l’espace**. |
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexDirection: "row", alignItems: "center" }}>
   <View style={{ backgroundColor: "red", width: 50, height: 50 }} />
   <View style={{ backgroundColor: "blue", width: 50, height: 80 }} />
@@ -105,7 +105,7 @@ La propriété `flex` définit **comment un élément occupe l’espace disponib
 | `flex: 2` | L’élément prend **deux fois plus d’espace** qu’un autre avec `flex: 1`. |
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexDirection: "row" }}>
   <View style={{ backgroundColor: "red", flex: 1 }} />
   <View style={{ backgroundColor: "blue", flex: 2 }} />
@@ -119,7 +119,7 @@ La propriété `flex` définit **comment un élément occupe l’espace disponib
 Cette propriété permet à **un seul élément** d’avoir un alignement différent de `alignItems`.  
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexDirection: "row", alignItems: "center" }}>
   <View style={{ backgroundColor: "red", width: 50, height: 50 }} />
   <View style={{ backgroundColor: "blue", width: 50, height: 50, alignSelf: "flex-end" }} />
@@ -134,7 +134,7 @@ Cette propriété permet à **un seul élément** d’avoir un alignement diffé
 Cette propriété gère **l’alignement des lignes** dans un conteneur avec `flexWrap: "wrap"`.  
 
 📌 **Exemple :**
-```tsx
+```jsx
 <View style={{ flexWrap: "wrap", flexDirection: "row", alignContent: "space-between" }}>
   <View style={{ backgroundColor: "skyblue", width: 100, height: 100 }} />
   <View style={{ backgroundColor: "coral", width: 100, height: 100 }} />
@@ -149,7 +149,7 @@ Cette propriété gère **l’alignement des lignes** dans un conteneur avec `fl
 🎯 **Objectif : Construire une interface avec un header, un body et un footer.**
 
 📌 **Code :**
-```tsx
+```jsx
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 

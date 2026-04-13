@@ -278,14 +278,12 @@ Ce sont les concepts fondamentaux d'ES6 que tout développeur React devrait maî
 - **Node.js et npm :** Assurez-vous d’avoir Node.js installé (npm est inclus).
 - **Visual Studio Code :** Un éditeur de code performant tel que VS Code.
 
-### 4.2 Installation d’Expo CLI
-```bash
-npm install -g expo-cli
-```
+### 4.2 Utiliser Expo CLI
+Expo CLI est inclus avec le package `expo`. Vous n'avez plus besoin de l'installer globalement. Toutes les commandes s'exécutent via `npx expo`.
 
 ### 4.3 Vérification de l'installation
 ```bash
-expo --version
+npx expo --version
 ```
 
 ---
@@ -296,7 +294,7 @@ expo --version
 ```bash
 npx create-expo-app TheTodoListApp --template blank
 ```
-Sélectionnez le template **blank (TypeScript)**.
+Ce template crée un projet JavaScript minimal.
 
 ### 5.2 Lancer le projet
 ```bash
@@ -311,8 +309,8 @@ Scannez le QR code affiché avec l’application Expo Go pour tester l’applica
 
 ## 6. Premier écran : affichage d’un simple texte
 
-### 6.1 Modification du fichier `App.tsx`
-```tsx
+### 6.1 Modification du fichier `App.js`
+```jsx
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -347,10 +345,8 @@ const styles = StyleSheet.create({
 Créer un projet **The Todo List App** en utilisant Expo, et afficher un message de bienvenue personnalisé.
 
 ### Étapes à suivre
-1. **Installation des outils**
-   ```bash
-   npm install -g expo-cli
-   ```
+1. **Vérifier les outils**
+   Assurez-vous d'avoir Node.js installé. Expo CLI s'utilise directement via `npx expo`.
 2. **Création du projet**
    ```bash
    npx create-expo-app TheTodoListApp --template blank

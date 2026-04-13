@@ -13,12 +13,11 @@ Dans ce TP, nous allons apprendre à utiliser la navigation avec `react-navigati
 ### **1️⃣ Pré-requis**
 Assurez-vous d'avoir installé `react-navigation` et ses dépendances :
 ```sh
-npm install @react-navigation/native
-npm install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated react-native-vector-icons
-npm install @react-navigation/native-stack
-npm install @react-navigation/bottom-tabs
-npm install @expo/vector-icons
+npx expo install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs
+npx expo install react-native-screens react-native-safe-area-context
 ```
+
+> **Note :** `@expo/vector-icons` est déjà inclus dans les projets Expo. Les packages `react-native-gesture-handler` et `react-native-reanimated` ne sont plus nécessaires pour la navigation de base.
 
 ---
 
@@ -277,13 +276,14 @@ const styles = StyleSheet.create({
 
 #### **📌 `App.js`**
 
-Ce fichier met en place la navigation entre les écrans via :
+Ce fichier met en place la navigation entre les écrans via l'API statique (déclarative) de React Navigation v7 :
 - Un `Stack Navigator` pour gérer la navigation entre `ToDoListScreen` et `DetailScreen`.
 - Un `Bottom Tab Navigator` pour basculer entre la liste des tâches et le profil.
 - Des icônes pour chaque onglet de navigation.
+- Plus besoin de `NavigationContainer`, on utilise `createStaticNavigation`.
 
 ```jsx
-import { NavigationContainer } from '@react-navigation/native';
+import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -291,49 +291,45 @@ import ToDoListScreen from './screens/ToDoListScreen';
 import DetailScreen from './screens/DetailScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const TodoStack = createNativeStackNavigator({
+  screens: {
+    Accueil: {
+      screen: ToDoListScreen,
+      options: { headerShown: false },
+    },
+    Details: {
+      screen: DetailScreen,
+      options: { title: 'Détails de la tâche' },
+    },
+  },
+});
 
-function TodoStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen 
-        name="Accueil" 
-        component={ToDoListScreen} 
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen 
-        name="Details" 
-        component={DetailScreen} 
-        options={{ title: 'Détails de la tâche' }}
-      />
-    </Stack.Navigator>
-  );
-}
+const RootTabs = createBottomTabNavigator({
+  screenOptions: {
+    tabBarActiveTintColor: '#2ecc71',
+    tabBarInactiveTintColor: '#95a5a6',
+  },
+  screens: {
+    Taches: {
+      screen: TodoStack,
+      options: {
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => <Ionicons name="list" size={size} color={color} />,
+      },
+    },
+    Profile: {
+      screen: ProfileScreen,
+      options: {
+        tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
+      },
+    },
+  },
+});
+
+const Navigation = createStaticNavigation(RootTabs);
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
-            let iconName;
-            if (route.name === "Taches") {
-              iconName = "list";
-            } else if (route.name === "Profile") {
-              iconName = "person";
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#2ecc71',
-          tabBarInactiveTintColor: '#95a5a6',
-        })}
-      >
-        <Tab.Screen name="Taches" component={TodoStack} options={{ headerShown: false }} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+  return <Navigation />;
 }
 ```
 ---
@@ -343,11 +339,13 @@ export default function App() {
 #### **Navigation en pile (`Stack Navigator`)**
 - Utilisée pour passer de `ToDoListScreen` à `DetailScreen`.
 - Permet de revenir en arrière automatiquement.
+- Définie de manière déclarative via `createNativeStackNavigator({ screens: { ... } })`.
 
 #### **Navigation en onglets (`Bottom Tab Navigation`)**
 - Ajoute une barre de navigation en bas de l'écran.
 - Deux onglets : `Taches` (liste des tâches) et `Profile`.
 - Utilisation d'icônes personnalisées via `@expo/vector-icons`.
+- La navigation est créée via `createStaticNavigation()` (plus besoin de `<NavigationContainer>`).
 
 ---
 

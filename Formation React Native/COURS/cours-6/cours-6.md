@@ -148,7 +148,7 @@ Nous allons modifier `ProfileScreen.js` afin de :
 Dans un terminal, installez le module suivant :
 
 ```sh
-expo install expo-image-picker
+npx expo install expo-image-picker
 ```
 
 #### **Mise à jour de `ProfileScreen.js`**
@@ -176,14 +176,14 @@ export default function ProfileScreen() {
 
     // Ouvrir la galerie
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ['images'],
       allowsEditing: true,
       aspect: [1, 1],
       quality: 0.5,
     });
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
 
@@ -234,7 +234,7 @@ Pour que le contexte soit accessible dans toute l’application, modifiez le fic
 
 ```jsx
 // App.js
-import { NavigationContainer } from '@react-navigation/native';
+import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -243,49 +243,47 @@ import DetailScreen from './src/screens/DetailScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import { TodoProvider } from './context/TodoContext';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const TodoStack = createNativeStackNavigator({
+  screens: {
+    Accueil: {
+      screen: ToDoListScreen,
+      options: { headerShown: false },
+    },
+    Details: {
+      screen: DetailScreen,
+      options: { title: 'Détails de la tâche' },
+    },
+  },
+});
 
-function TodoStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen 
-        name="Accueil" 
-        component={ToDoListScreen} 
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen 
-        name="Details" 
-        component={DetailScreen} 
-        options={{ title: 'Détails de la tâche' }}
-      />
-    </Stack.Navigator>
-  );
-}
+const RootTabs = createBottomTabNavigator({
+  screenOptions: {
+    tabBarActiveTintColor: '#2ecc71',
+    tabBarInactiveTintColor: '#95a5a6',
+  },
+  screens: {
+    Taches: {
+      screen: TodoStack,
+      options: {
+        headerShown: false,
+        tabBarIcon: ({ color, size }) => <Ionicons name="list" size={size} color={color} />,
+      },
+    },
+    Profile: {
+      screen: ProfileScreen,
+      options: {
+        tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
+      },
+    },
+  },
+});
+
+const Navigation = createStaticNavigation(RootTabs);
 
 export default function App() {
   return (
     <TodoProvider>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size }) => {
-              let iconName;
-              if (route.name === "Taches") {
-                iconName = "list";
-              } else if (route.name === "Profile") {
-                iconName = "person";
-              }
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: '#2ecc71',
-            tabBarInactiveTintColor: '#95a5a6',
-          })}
-        >
-          <Tab.Screen name="Taches" component={TodoStack} options={{ headerShown: false }} />
-          <Tab.Screen name="Profile" component={ProfileScreen} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <Navigation />
     </TodoProvider>
   );
 }
