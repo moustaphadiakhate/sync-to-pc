@@ -278,12 +278,16 @@ Ce sont les concepts fondamentaux d'ES6 que tout développeur React devrait maî
 - **Node.js et npm :** Assurez-vous d’avoir Node.js installé (npm est inclus).
 - **Visual Studio Code :** Un éditeur de code performant tel que VS Code.
 
-### 4.2 Utiliser Expo CLI
-Expo CLI est inclus avec le package `expo`. Vous n'avez plus besoin de l'installer globalement. Toutes les commandes s'exécutent via `npx expo`.
+### 4.2 Installer Expo CLI
+Expo CLI est l'outil en ligne de commande pour créer et gérer vos projets React Native avec Expo.
+
+```bash
+npm install -g expo-cli
+```
 
 ### 4.3 Vérification de l'installation
 ```bash
-npx expo --version
+expo --version
 ```
 
 ---
@@ -292,15 +296,18 @@ npx expo --version
 
 ### 5.1 Initialiser le projet
 ```bash
-npx create-expo-app TheTodoListApp --template blank
+expo init TheTodoListApp --template blank
 ```
-Ce template crée un projet JavaScript minimal.
+
+Cette commande crée directement un projet avec le template **blank** (JavaScript sans TypeScript).
+
+**Alternative :** Vous pouvez aussi utiliser `expo init TheTodoListApp` sans l'option `--template`, et Expo CLI vous demandera de choisir un template de manière interactive.
 
 ### 5.2 Lancer le projet
 ```bash
 cd TheTodoListApp
 
-npx expo start --tunnel
+expo start --tunnel
 
 ```
 Scannez le QR code affiché avec l’application Expo Go pour tester l’application.
@@ -346,16 +353,19 @@ Créer un projet **The Todo List App** en utilisant Expo, et afficher un message
 
 ### Étapes à suivre
 1. **Vérifier les outils**
-   Assurez-vous d'avoir Node.js installé. Expo CLI s'utilise directement via `npx expo`.
+   Assurez-vous d'avoir Node.js et Expo CLI installés :
+   ```bash
+   npm install -g expo-cli
+   ```
 2. **Création du projet**
    ```bash
-   npx create-expo-app TheTodoListApp --template blank
-
+   expo init TheTodoListApp --template blank
    ```
+
 3. **Démarrer le projet**
    ```bash
    cd TheTodoListApp
-   npx expo start --lan // ou --tunnel
+   expo start --lan # ou --tunnel
    ```
 4. **Modification de `App.jsx`** avec le code de la section précédente.
 
