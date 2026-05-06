@@ -286,7 +286,6 @@ import { Ionicons } from '@expo/vector-icons';
 import ToDoListScreen from './src/screens/ToDoListScreen';
 import DetailScreen from './src/screens/DetailScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import { TodoProvider } from './context/TodoContext';
 
 const TodoStack = createNativeStackNavigator({
   screens: {
