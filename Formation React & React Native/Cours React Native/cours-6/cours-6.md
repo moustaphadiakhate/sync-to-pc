@@ -160,10 +160,8 @@ Voici un exemple de code permettant de changer la photo de profil :
 import React, { useState, useContext } from 'react';
 import { View, Text, Image, StyleSheet, Button, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { TodoContext } from '../context/TodoContext';
 
 export default function ProfileScreen() {
-  const { listeTache } = useContext(TodoContext);
   const [image, setImage] = useState('https://picsum.photos/200/300');
 
   const pickImage = async () => {
@@ -192,33 +190,32 @@ export default function ProfileScreen() {
       <Image source={{ uri: image }} style={styles.image} />
       <Button title="Changer la photo" onPress={pickImage} color="#2ecc71" />
       <Text style={styles.welcome}>Bienvenue!</Text>
-      <Text style={styles.todoCount}>Vous avez {listeTache.length} tâches créées.</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    backgroundColor: '#f8f9fa' 
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f9fa'
   },
-  image: { 
-    width: 100, 
-    height: 100, 
-    borderRadius: 20, 
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
     marginBottom: 10,
     borderWidth: 2,
     borderColor: '#2ecc71'
   },
-  welcome: { 
-    fontSize: 22, 
-    fontWeight: 'bold', 
-    marginBottom: 5 
+  welcome: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5
   },
-  todoCount: { 
-    fontSize: 18, 
+  todoCount: {
+    fontSize: 18,
     color: '#555'
   }
 });
