@@ -132,7 +132,55 @@ export default function ToDoListScreen({ navigation }) {
   );
 }
 
-// (Les styles restent inchangés)
+
+// Styles cohérents avec le TP précédent
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: '#ffffff',
+    gap: 15,
+  },
+  zoneAjoutToDo: {
+    backgroundColor: '#9ee8ad',
+    padding: 15,
+    borderRadius: 10,
+    elevation: 3,
+    gap: 10,
+  },
+  textInput: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#dcdcdc',
+  },
+  todoItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#a6e8c2',
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 2,
+  },
+  todoContent: {
+    flex: 1,
+    marginRight: 10,
+  },
+  todoText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#2c3e50',
+  },
+  todoDescription: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
+  },
+});
 ```
 
 ---
