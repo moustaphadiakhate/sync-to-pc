@@ -132,7 +132,55 @@ export default function ToDoListScreen({ navigation }) {
   );
 }
 
-// (Les styles restent inchangés)
+
+// Styles cohérents avec le TP précédent
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: '#ffffff',
+    gap: 15,
+  },
+  zoneAjoutToDo: {
+    backgroundColor: '#9ee8ad',
+    padding: 15,
+    borderRadius: 10,
+    elevation: 3,
+    gap: 10,
+  },
+  textInput: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#dcdcdc',
+  },
+  todoItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#a6e8c2',
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 2,
+  },
+  todoContent: {
+    flex: 1,
+    marginRight: 10,
+  },
+  todoText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#2c3e50',
+  },
+  todoDescription: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 4,
+  },
+});
 ```
 
 ---
@@ -160,10 +208,8 @@ Voici un exemple de code permettant de changer la photo de profil :
 import React, { useState, useContext } from 'react';
 import { View, Text, Image, StyleSheet, Button, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { TodoContext } from '../context/TodoContext';
 
 export default function ProfileScreen() {
-  const { listeTache } = useContext(TodoContext);
   const [image, setImage] = useState('https://picsum.photos/200/300');
 
   const pickImage = async () => {
@@ -192,33 +238,32 @@ export default function ProfileScreen() {
       <Image source={{ uri: image }} style={styles.image} />
       <Button title="Changer la photo" onPress={pickImage} color="#2ecc71" />
       <Text style={styles.welcome}>Bienvenue!</Text>
-      <Text style={styles.todoCount}>Vous avez {listeTache.length} tâches créées.</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    backgroundColor: '#f8f9fa' 
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f9fa'
   },
-  image: { 
-    width: 100, 
-    height: 100, 
-    borderRadius: 20, 
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
     marginBottom: 10,
     borderWidth: 2,
     borderColor: '#2ecc71'
   },
-  welcome: { 
-    fontSize: 22, 
-    fontWeight: 'bold', 
-    marginBottom: 5 
+  welcome: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 5
   },
-  todoCount: { 
-    fontSize: 18, 
+  todoCount: {
+    fontSize: 18,
     color: '#555'
   }
 });
@@ -241,7 +286,6 @@ import { Ionicons } from '@expo/vector-icons';
 import ToDoListScreen from './src/screens/ToDoListScreen';
 import DetailScreen from './src/screens/DetailScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import { TodoProvider } from './context/TodoContext';
 
 const TodoStack = createNativeStackNavigator({
   screens: {
