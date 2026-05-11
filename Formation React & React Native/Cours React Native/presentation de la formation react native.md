@@ -1,7 +1,7 @@
 # 📘 Formation React Native avec Expo
 
 ## 🎯 Objectif
-Ce module de formation vous apprendra à développer une application mobile avec **React Native**, **Expo** en prenant comme projet fil rouge : **The Todo List App**.
+Ce module de formation vous apprendra à développer une application mobile avec **React Native**, **Expo** en prenant comme projet fil rouge : **thedodolistapp**.
 ---
 
 ## 📅 Programme détaillé
@@ -11,7 +11,7 @@ Ce module de formation vous apprendra à développer une application mobile avec
 - Introduction à Expo : pourquoi l’utiliser ?
 - Présentation de ES6 et son intérêt.
 - Installation de l’environnement de développement.
-- Création du projet **The Todo List App** avec Expo.
+- Création du projet **thedodolistapp** avec Expo.
 - Structure d’un projet React Native.
 - Premier écran : affichage d’un simple texte.
 

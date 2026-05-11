@@ -217,7 +217,7 @@ Liens utiles :
 ## 4. Exemples pratiques et cas d'utilisation
 
 ### 4.1 Création d'un composant TodoItem
-Dans notre projet "The Todo List App", nous créons un composant `TodoItem` qui affiche une tâche et offre une option pour la supprimer.
+Dans notre projet "thedodolistapp", nous créons un composant `TodoItem` qui affiche une tâche et offre une option pour la supprimer.
 
 ```jsx
 import React from 'react';

@@ -292,22 +292,22 @@ expo --version
 
 ---
 
-## 5. Création du projet The Todo List App avec Expo
+## 5. Création du projet thedodolistapp avec Expo
 
 ### 5.1 Initialiser le projet
 ```bash
-expo init TheTodoListApp --template blank
+expo init thedodolistapp --template blank
 ```
 
 Cette commande crée directement un projet avec le template **blank** (JavaScript sans TypeScript).
 
-**Alternative :** Vous pouvez aussi utiliser `expo init TheTodoListApp` sans l'option `--template`, et Expo CLI vous demandera de choisir un template de manière interactive.
+**Alternative :** Vous pouvez aussi utiliser `expo init thedodolistapp` sans l'option `--template`, et Expo CLI vous demandera de choisir un template de manière interactive.
 
 ### 5.2 Lancer le projet
 ```bash
-cd TheTodoListApp
+cd thedodolistapp
 
-expo start --tunnel
+npx expo start --tunnel
 
 ```
 Scannez le QR code affiché avec l’application Expo Go pour tester l’application.
@@ -324,7 +324,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeText}>Bienvenue sur The Todo List App !</Text>
+      <Text style={styles.welcomeText}>Bienvenue sur thedodolistapp !</Text>
     </View>
   );
 }
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
 ## 7. TP : Mise en place du projet et affichage d’un message de bienvenue
 
 ### Objectif du TP
-Créer un projet **The Todo List App** en utilisant Expo, et afficher un message de bienvenue personnalisé.
+Créer un projet **thedodolistapp** en utilisant Expo, et afficher un message de bienvenue personnalisé.
 
 ### Étapes à suivre
 1. **Vérifier les outils**
@@ -359,13 +359,13 @@ Créer un projet **The Todo List App** en utilisant Expo, et afficher un message
    ```
 2. **Création du projet**
    ```bash
-   expo init TheTodoListApp --template blank
+   expo init thedodolistapp --template blank
    ```
 
 3. **Démarrer le projet**
    ```bash
-   cd TheTodoListApp
-   expo start --lan # ou --tunnel
+   cd thedodolistapp
+   npx expo start --lan # ou --tunnel
    ```
 4. **Modification de `App.jsx`** avec le code de la section précédente.
 
