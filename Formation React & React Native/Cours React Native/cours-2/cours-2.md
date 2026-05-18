@@ -151,6 +151,7 @@ Créons un exemple où un composant parent transmet des données à un composant
 Composant enfant (`UserCard`) :
 
 ```jsx
+// composant enfant
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -163,7 +164,33 @@ const UserCard = ({ name, age }) => {
   );
 };
 
+```
+
+Composant parent (`UserList`) :
+
+```jsx
+// composant parent
+const UserList = () => {
+  const users = [
+    { id: 1, name: 'Alice', age: 25 },
+    { id: 2, name: 'Bob', age: 30 },
+    { id: 3, name: 'Charlie', age: 28 },
+  ];
+
+  return (
+    <View style={styles.container}>
+      {users.map(user => (
+        <UserCard key={user.id} name={user.name} age={user.age} />
+      ))}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
   card: {
     padding: 15,
     margin: 10,
@@ -175,32 +202,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-export default UserCard;
-```
-
-Composant parent (`UserList`) :
-
-```jsx
-import React from 'react';
-import { ScrollView } from 'react-native';
-import UserCard from './UserCard';
-
-const UserList = () => {
-  const users = [
-    { id: 1, name: 'Alice', age: 25 },
-    { id: 2, name: 'Bob', age: 30 },
-    { id: 3, name: 'Charlie', age: 28 },
-  ];
-
-  return (
-    <ScrollView>
-      {users.map(user => (
-        <UserCard key={user.id} name={user.name} age={user.age} />
-      ))}
-    </ScrollView>
-  );
-};
 
 export default UserList;
 ```
