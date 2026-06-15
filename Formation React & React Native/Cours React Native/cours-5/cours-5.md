@@ -1,4 +1,4 @@
-# 🚀 Leçon 5 : Navigation avec React Navigation (Version corrigée)
+# 🚀 Leçon 5 : Navigation avec React Navigation
 
 ## 🎯 Objectif
 
