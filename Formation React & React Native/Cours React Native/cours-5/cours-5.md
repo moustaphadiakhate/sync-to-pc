@@ -318,9 +318,9 @@ const styles = StyleSheet.create({
 ⚠️ Les imports doivent correspondre à la structure du projet :
 
 ```jsx
-import ToDoListScreen from './src/screens/ToDoListScreen';
-import DetailScreen from './src/screens/DetailScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
+import ToDoListScreen from './screens/ToDoListScreen';
+import DetailScreen from './screens/DetailScreen';
+import ProfileScreen from './screens/ProfileScreen';
 ```
 
 ### Code complet
@@ -332,9 +332,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Ionicons } from '@expo/vector-icons';
 
-import ToDoListScreen from './src/screens/ToDoListScreen';
-import DetailScreen from './src/screens/DetailScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
+import ToDoListScreen from './screens/ToDoListScreen';
+import DetailScreen from './screens/DetailScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const TodoStack = createNativeStackNavigator({
   screens: {
