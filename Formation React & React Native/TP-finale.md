@@ -3,21 +3,21 @@
 # 1) Structure du projet
 
 ```text
-todo-app/
+TheTodoTistApp/
 │
 ├── src/
 │   ├── api/
 │   │   └── supabase.js
 │   │
 │   ├── components/
-│   │   └── TodoCard.js
+│   │   └── TodoCard.jsx
 │   │
 │   ├── navigation/
-│   │   └── AppNavigator.js
+│   │   └── AppNavigator.jsx
 │   │
 │   ├── screens/
-│   │   ├── HomeScreen.js
-│   │   └── AddTodoScreen.js
+│   │   ├── HomeScreen.jsx
+│   │   └── AddTodoScreen.jsx
 │   │
 │   └── styles/
 │       └── theme.js
