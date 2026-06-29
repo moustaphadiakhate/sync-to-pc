@@ -204,7 +204,7 @@ export const colors = {
 
 # 6) Navigation
 
-## src/navigation/AppNavigator.js
+## src/navigation/AppNavigator.jsx
 
 ```js
 import React from "react";
@@ -249,7 +249,7 @@ export default function App() {
 
 # 8) Composant Todo (UI Card)
 
-## src/components/TodoCard.js
+## src/components/TodoCard.jsx
 
 ```js
 import React from "react";
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
 
 # 9) HomeScreen (READ + DELETE)
 
-## src/screens/HomeScreen.js
+## src/screens/HomeScreen.jsx
 
 ```js
 import React, { useEffect, useState } from "react";
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
 
 # 10) AddTodoScreen (CREATE)
 
-## src/screens/AddTodoScreen.js
+## src/screens/AddTodoScreen.jsx
 
 ```js
 import React, { useState } from "react";
